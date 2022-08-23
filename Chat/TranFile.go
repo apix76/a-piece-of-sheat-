@@ -37,8 +37,8 @@ func (s *Trans) Sendfl(sen string, res string) {
 	}
 }
 
-func (s *Trans) Get(mes Message, Filesize int, fileName []string) {
-	mesget := Message{Request: "download", File: s.Name, FileSize: int64(Filesize)}
+func (s *Trans) Get(sen string, rec string, mes Message, Filesize int, fileName []string) {
+	mesget := Message{Sender: sen, Recipient: rec, Request: "download", File: s.Name, FileSize: int64(Filesize)}
 	Send(mesget, s.Send)
 	file, err := os.Create(os.Getenv("USERPROFILE") + "\\Downloads\\" + fileName[1])
 	if err != nil {

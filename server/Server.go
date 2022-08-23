@@ -52,15 +52,15 @@ func Handle(Conn net.Conn) {
 			fmt.Printf("Какае-то хуйня, разберись! \nerr: %v \nip: %v\n", err, Conn.RemoteAddr())
 			return
 		}
-		if mes.Request == "upload" {
-			fileName = Get(mes, ClientConn[mes.Sender])
-			mes = Message{File: fileName}
-		}
-		if mes.Request == "download" {
-			Sendfl(fileName, ClientConn[mes.Recipient])
-		}
 		if ClientConn[mes.Sender] == nil {
 			ClientConn[mes.Sender] = Conn
+		}
+		if mes.Request == "upload" {
+			fileName = Get(mes, ClientConn[mes.Sender])
+			mes.File = fileName
+		}
+		if mes.Request == "download" {
+			Sendfl(mes.File, ClientConn[mes.Sender])
 		}
 		if ClientConn[mes.Recipient] != nil {
 			err = Send(mes, ClientConn[mes.Recipient])
