@@ -107,7 +107,7 @@ func Gitgud(send net.Conn) {
 			case "y", "Y":
 				s := Trans{Send: send}
 				s.Name = mes.File
-				s.Get(mes.Sender, mes.Recipient, mes, int(mes.FileSize), fileName)
+				s.Get(mes.Recipient, mes.Sender, mes, int(mes.FileSize), fileName)
 			default:
 			}
 			continue
