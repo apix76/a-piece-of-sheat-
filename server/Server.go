@@ -61,6 +61,7 @@ func Handle(Conn net.Conn) {
 		}
 		if mes.Request == "download" {
 			Sendfl(mes.File, ClientConn[mes.Sender])
+			continue
 		}
 		if ClientConn[mes.Recipient] != nil {
 			err = Send(mes, ClientConn[mes.Recipient])
